@@ -10,7 +10,29 @@ import java.util.List;
 
 import static java.time.Month.*;
 
-
+@Configuration
 public class StudentConfig {
 
+    @Bean
+    CommandLineRunner commandLineRunner(
+            StudentRepository repository
+    ) {
+        return args -> {
+            Student mariam = new Student(
+                    "Mariam",
+                    "mariam.jamal@gamil.com",
+                    LocalDate.of(2000, JANUARY, 5)
+            );
+
+            Student alex = new Student(
+                    "Alex",
+                    "alex.jamal@gamil.com",
+                    LocalDate.of(2004, JANUARY, 2)
+
+            );
+            repository.saveAll(
+                    List.of(mariam,alex)
+            );
+        };
+    }
 }
